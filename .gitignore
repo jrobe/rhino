@@ -4,25 +4,23 @@
 # build directories
 build/
 lib/
+buildGradle
 
 # artifacts
 *.zip
+
 *.iml
 .idea/
 out/
 target/
 .gradle
+
+
 *~
 
 # eclipse
 .classpath
 .project
+test262
 bin/
 .settings/
-
-# idea
-rhino.ipr
-rhino.iws
-
-# VSCode
-.vscode

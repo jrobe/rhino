@@ -1,0 +1,51 @@
+plugins{
+    id 'java-library'
+    id 'maven-publish'
+}
+
+group = 'com.github.Anuken'
+
+tasks.withType(JavaCompile){
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+    options.encoding = "UTF-8"
+}
+
+sourceSets.main.java.srcDirs = ["src"]
+sourceSets.main.resources.srcDirs = ["src"]
+sourceSets.test.java.srcDirs = ["test"]
+
+task sourceJar(type: Jar){
+    from sourceSets.main.allJava
+}
+
+task runtimeSourceJar(type: Jar){
+    classifier 'sources'
+    from sourceSets.main.allJava
+}
+
+publishing{
+    publications{
+        maven(MavenPublication){
+            from components.java
+        }
+    }
+}
+
+repositories{
+    mavenCentral()
+}
+
+dependencies{
+    testImplementation "junit:junit:4.13"
+}
+
+test{
+    useJUnit()
+
+    testLogging{
+        exceptionFormat = 'full'
+
+        testLogging.showStandardStreams = true
+    }
+}
